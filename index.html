@@ -11,9 +11,14 @@
             body {
                 margin:0
             }
-            .location {
+            .date {
                 color: #8c1515;
-                font-size: 20px;
+                font-size: 24px;
+                font-weight: bold;
+            }
+            .meal {
+                font-size: 18px;
+                font-weight: bold;
             }
             .food {
                 font-size: 16px;
@@ -23,10 +28,42 @@
     <body>
         <div id='container'></div>
         <script>
+            function addDate(date) {
+                const nextDiv = document.createElement('div')
+                nextDiv.id = date
+                document.getElementById('container').appendChild(nextDiv)
+                const nextP = document.createElement('p')
+                nextP.innerHTML = date
+                nextP.className = 'date'
+                nextDiv.appendChild(nextP)
+                return nextDiv
+            }
+
+            function addMeal(meal, nextDiv) {
+                const nextP = document.createElement('p')
+                nextP.innerHTML = meal
+                nextP.className = 'meal'
+                nextDiv.appendChild(nextP)
+            }
+
             function showSpecials(specials) {
+                let date = ''
+                let meal = ''
+                let food = []
+                let nexDiv = null
                 for (let i = 0; i < specials.length; i++) {
+                    if (specials[i][0][1] !== date) {
+                        nextDiv = addDate(specials[i][0][1])
+                        date = specials[i][0][1]
+                        meal = ''
+                    }
+                    if (specials[i][0][2] !== meal) {
+                        addMeal(specials[i][0][1], nextDiv)
+                        meal = specials[i][0][2]
+                    }
                     const nextP = document.createElement('p')
-                    nextP.innerHTML = specials[i]
+                    nextP.innerHTML = specials[i][0][0] + ': ' + specials[i][1]
+                    nextP.className = 'food'
                     document.getElementById('container').appendChild(nextP)
                 }
             }
