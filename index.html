@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Stanford Meal Specials</title>
+        <style>
+            html {
+                font-family:sans-serif;
+                -webkit-text-size-adjust:100%;
+                -ms-text-size-adjust:100%
+            }
+            body {
+                margin:0
+            }
+            .location {
+                color: #8c1515;
+                font-size: 20px;
+            }
+            .food {
+                font-size: 16px;
+            }
+        </style>
+    </head>
+    <body>
+        <div id='container'></div>
+        <script>
+            function showSpecials(specials) {
+                for (let i = 0; i < specials.length; i++) {
+                    const nextP = document.createElement('p')
+                    nextP.innerHTML = specials[i]
+                    document.getElementById('container').appendChild(nextP)
+                }
+            }
+
+            let requestURL = "http://stanford.edu/~riedman/mealspecials/specials.json"
+            let request = new XMLHttpRequest()
+            request.open('GET', requestURL)
+            request.setRequestHeader('Access-Control-Allow-Origin', 'http://stanford.edu/*')
+            request.responseType = 'json';
+            request.send();
+            request.onload = function () {
+                const specials = request.response
+                showSpecials(specials)
+            }
+        </script>
+    </body>
+</html>
