@@ -58,13 +58,13 @@
                         meal = ''
                     }
                     if (specials[i][0][2] !== meal) {
-                        addMeal(specials[i][0][1], nextDiv)
+                        addMeal(specials[i][0][2], nextDiv)
                         meal = specials[i][0][2]
                     }
                     const nextP = document.createElement('p')
                     nextP.innerHTML = specials[i][0][0] + ': ' + specials[i][1]
                     nextP.className = 'food'
-                    document.getElementById('container').appendChild(nextP)
+                    nextDiv.appendChild(nextP)
                 }
             }
 
