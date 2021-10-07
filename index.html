@@ -58,17 +58,17 @@
                         meal = ''
                     }
                     if (specials[i][0][2] !== meal) {
-                        addMeal(specials[i][0][1], nextDiv)
+                        addMeal(specials[i][0][2], nextDiv)
                         meal = specials[i][0][2]
                     }
                     const nextP = document.createElement('p')
                     nextP.innerHTML = specials[i][0][0] + ': ' + specials[i][1]
                     nextP.className = 'food'
-                    document.getElementById('container').appendChild(nextP)
+                    nextDiv.appendChild(nextP)
                 }
             }
 
-            let requestURL = "http://stanford.edu/~riedman/mealspecials/specials.json"
+            let requestURL = "https://stanford.edu/~riedman/mealspecials/specials.json"
             let request = new XMLHttpRequest()
             request.open('GET', requestURL)
             request.setRequestHeader('Access-Control-Allow-Origin', 'http://stanford.edu/*')
